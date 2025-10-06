@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Muscle Way</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+      }
+      header {
+        background: #1a1a1a;
+        padding: 15px 30px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header .logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: #3b82f6;
+      }
+      header nav a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      header nav a:hover {
+        color: #3b82f6;
+      }
+      .container {
+        text-align: center;
+        margin-top: 100px;
+      }
+      .btn {
+        display: inline-block;
+        width: 220px;
+        padding: 12px;
+        margin: 15px;
+        background-color: #1e64b3;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+      .btn:hover {
+        background-color: #3b82f6;
+        transform: scale(1.05);
+      }
+      .login-box {
+        background: #111;
+        display: none;
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      .login-box h2 {
+        color: #3b82f6;
+        margin-bottom: 20px;
+      }
+      .login-box input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: none;
+        border-radius: 5px;
+        background: #222;
+        color: white;
+      }
+      .login-box button {
+        width: 100%;
+        padding: 12px;
+        background: #3b82f6;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .login-box button:hover {
+        background: #1e64b3;
+      }
+      .error-message {
+        color: #ff5252;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">MUSCLE WAY</div>
+    </header>
+    <div class="container" id="area-selecao">
+      <h1>Escolha sua área de acesso</h1>
+      <button class="btn" onclick="mostrarLogin('cliente')">
+        ÁREA CLIENTE
+      </button>
+      <button class="btn" onclick="mostrarLogin('corporativo')">
+        ÁREA CORPORATIVA
+      </button>
+    </div>
+    <div class="login-box" id="login-cliente">
+      <h2>Login - Área do Cliente</h2>
+      <% if (typeof erro !== 'undefined' && area === 'cliente') { %>
+      <div class="error-message"><%= erro %></div>
+      <% } %>
+      <form method="POST" action="/login">
+        <input type="hidden" name="area" value="cliente" />
+        <input type="text" name="usuario" placeholder="Usuário" required />
+        <input type="password" name="senha" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+    <div class="login-box" id="login-corporativo">
+      <h2>Login - Área Corporativa</h2>
+      <% if (typeof erro !== 'undefined' && area === 'corporativo') { %>
+      <div class="error-message"><%= erro %></div>
+      <% } %>
+      <form method="POST" action="/login-corporativo">
+        <input type="hidden" name="area" value="corporativo" />
+        <input
+          type="text"
+          name="usuario"
+          placeholder="Usuário Corporativo"
+          required
+        />
+        <input type="password" name="senha" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+    <script>
+      function mostrarLogin(area) {
+        document.getElementById("area-selecao").style.display = "none";
+        if (area === "cliente") {
+          document.getElementById("login-cliente").style.display = "block";
+        } else {
+          document.getElementById("login-corporativo").style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
