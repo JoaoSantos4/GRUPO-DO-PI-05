@@ -22,6 +22,17 @@ const termosRouter = require('./routers/termos')
 const trocasRouter = require('./routers/trocas') 
 const privacidadeRouter = require('./routers/privacidade')
 const adminRouter = require('./routers/admin')
+const bancarioRouter = require('./routers/bancario')
+const estoqueRouter = require('./routers/estoque')
+const expedicaoRouter = require('./routers/expedicao')
+const pegarRouter = require('./routers/pagar')
+const receberRouter = require('./routers/receber')
+const relatioriosRouter = require('./routers/relatorios')
+const vendasRouter = require('./routers/vendas')
+
+
+
+
 app.use('/', authRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/atendimento', atendimentoRouter)
@@ -33,6 +44,14 @@ app.use('/termos', termosRouter)
 app.use('/trocas', trocasRouter)
 app.use('/privacidade', privacidadeRouter)
 app.use('/admin', adminRouter)
+app.use('/bancario', bancarioRouter)
+app.use('/estoque', estoqueRouter)
+app.use('/expedicao', expedicaoRouter)
+app.use('/pagar', pegarRouter)
+app.use('/receber', receberRouter)
+app.use('/relatorios', relatioriosRouter)
+app.use('/vendas', vendasRouter)
+
 app.listen(4040, ()=>{
     console.log('Servidor inicializado em http://localhost:4040')
 })
