@@ -1,11 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Carrinho - MUSCLE WAY</title>
+
+    <style>
+      /* RESET */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial";
+        background-color: #ffffff;
+        color: #1a1a1a;
+        padding-bottom: 40px;
+      }
+
+      /* HEADER (mesmo do dashboard) */
+      .header {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 20px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #3b82f6;
+        text-shadow: 0 0 20px #3b82f6;
+      }
+
+      .nav-items {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .nav-item:hover {
+        color: #3b82f6;
+      }
+
+      .search-container {
+        position: relative;
+        min-width: 300px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /* TÍTULO */
+      .page-title {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2rem;
+        font-weight: 900;
+        color: #1a1a1a;
+      }
+
+      /* TABELA BONITA */
+      .cart-table {
+        width: 100%;
+        margin-top: 40px;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .cart-table th {
+        background: #1a1a1a;
+        color: white;
+        padding: 15px;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      .cart-table td {
+        padding: 18px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+      }
+
+      .cart-table img {
+        width: 70px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      /* BOTÕES */
+      .btn {
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .btn-danger {
+        background: #dc2626;
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background: #b91c1c;
+      }
+
+      .btn-clear {
+        margin-top: 25px;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        padding: 12px 22px;
+        color: white;
+        border-radius: 10px;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      }
+
+      .btn-clear:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      }
+
+      /* TOTAL */
+      .total-box {
+        margin-top: 30px;
+        text-align: right;
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #1d4ed8;
+      }
+
+      /* RESPONSIVO */
+      @media (max-width: 700px) {
+        .cart-table td {
+          padding: 10px;
+        }
+        .cart-table img {
+          width: 50px;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <h1>OIE</h1>
+    <!-- HEADER COPIADO DO DASHBOARD -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">MUSCLE WAY</div>
+
+          <div class="nav-items">
+            <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="O que você procura?"
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+
+            <a href="/dashboard" class="nav-item">
+              <span>🏠</span>
+              <span>Início</span>
+            </a>
+
+            <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
+          </div>
+
+          <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+          <a href="/sair" class="nav-item">❌ Sair</a>
+        </div>
+      </div>
+    </header>
+
+    <h1 class="page-title">Seu Carrinho 🛒</h1>
+
+    <% if (carrinho.length === 0) { %>
+
+    <h2 style="text-align: center; margin-top: 20px">
+      Seu carrinho está vazio 😢
+    </h2>
+
+    <% } else { %>
+
+    <table class="cart-table container">
+      <tr>
+        <th>Imagem</th>
+        <th>Produto</th>
+        <th>Qtd</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </tr>
+
+      <% carrinho.forEach(item => { %>
+      <tr>
+        <td><img src="/images/<%= item.cod_produto %>.png" /></td>
+        <td><%= item.nome_produto %></td>
+        <td><%= item.quantidade %></td>
+        <td>R$ <%= (item.preco_real * item.quantidade).toFixed(2) %></td>
+        <td>
+          <form action="/carrinho/remove/<%= item.cod_produto %>" method="POST">
+            <button class="btn btn-danger">Remover 1</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+
+    <div class="container total-box">Total: R$ <%= total.toFixed(2) %></div>
+
+    <div class="container">
+      <form action="/carrinho/limpar" method="POST">
+        <button class="btn-clear">Limpar carrinho</button>
+      </form>
+    </div>
+
+    <% } %>
   </body>
 </html>

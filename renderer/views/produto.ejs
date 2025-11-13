@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= produto.nome_produto %></title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+        margin: 0;
+      }
+      img {
+        width: 250px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .btn {
+        padding: 12px 18px;
+        background: #3b82f6;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+        margin-top: 10px;
+        display: inline-block;
+      }
+      .btn:hover {
+        background: #2563eb;
+      }
+
+      /* HEADER */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .header {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 20px 0;
+        margin-bottom: 30px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #3b82f6;
+        text-shadow: 0 0 20px #3b82f6;
+      }
+
+      .nav-items {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: 0.3s ease;
+      }
+
+      .nav-item:hover {
+        color: #3b82f6;
+      }
+
+      .search-container {
+        position: relative;
+        min-width: 300px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /* RESPONSIVO */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .nav-items {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .search-container {
+          min-width: 250px;
+        }
+      }
+
+      /* PRODUTO */
+      .produto-box {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 500px;
+        margin: auto;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .produto-box p {
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">MUSCLE WAY</div>
+
+          <div class="nav-items">
+            <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="O que você procura?"
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+
+            <a href="/dashboard" class="nav-item">
+              <span>🏠</span>
+              <span>Início</span>
+            </a>
+
+            <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
+          </div>
+
+          <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+          <a href="/sair" class="nav-item">❌ Sair</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="produto-box">
+      <h1><%= produto.nome_produto %></h1>
+
+      <img
+        src="/images/<%= produto.cod_produto %>.png"
+        alt="Imagem do produto"
+      />
+
+      <p><strong>Categoria:</strong> <%= produto.csategoria %></p>
+
+      <p><strong>Subcategoria:</strong> <%= produto.subcategoria %></p>
+
+      <p>
+        <strong>Preço:</strong> R$ <%= Number(produto.preco_real ||
+        0).toFixed(2) %>
+      </p>
+
+      <p><strong>Disponibilidade:</strong> <%= produto.disponibilidade %></p>
+
+      <form action="/carrinho/add/<%= produto.cod_produto %>" method="POST">
+        <button class="btn">Adicionar ao Carrinho</button>
+      </form>
+    </div>
+  </body>
+</html>

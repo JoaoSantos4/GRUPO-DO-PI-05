@@ -14,7 +14,6 @@ app.use(session({
 const authRouter = require('./routers/auth')
 const dashboardRouter = require('./routers/dashboard')
 const atendimentoRouter = require('./routers/atendimento')
-const minhacontaRouter = require('./routers/minhaconta')
 const sairRouter = require('./routers/sair') 
 const carrinhoRouter = require('./routers/carrinho')
 const sobrenosRouter = require('./routers/sobrenos') 
@@ -29,14 +28,13 @@ const pegarRouter = require('./routers/pagar')
 const receberRouter = require('./routers/receber')
 const relatioriosRouter = require('./routers/relatorios')
 const vendasRouter = require('./routers/vendas')
-
+const produtoRouter = require('./routers/Produto')
 
 
 
 app.use('/', authRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/atendimento', atendimentoRouter)
-app.use('/minhaconta', minhacontaRouter)
 app.use('/sair', sairRouter)
 app.use('/carrinho', carrinhoRouter)
 app.use('/sobrenos', sobrenosRouter)
@@ -51,6 +49,7 @@ app.use('/pagar', pegarRouter)
 app.use('/receber', receberRouter)
 app.use('/relatorios', relatioriosRouter)
 app.use('/vendas', vendasRouter)
+app.use('/produto', produtoRouter)
 
 app.listen(4040, ()=>{
     console.log('Servidor inicializado em http://localhost:4040')

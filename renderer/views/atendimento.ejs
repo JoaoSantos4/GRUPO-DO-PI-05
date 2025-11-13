@@ -4,154 +4,243 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atendimento - Muscle Way</title>
+
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f9;
+      /* RESET */
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
-      header {
-        background: #1a1a1a;
-        padding: 15px 30px;
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #ffffff;
+        color: #1a1a1a;
+      }
+
+      /* HEADER */
+      .header {
+        background-color: #1a1a1a;
         color: white;
+        padding: 20px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
       }
-      header .logo {
-        font-size: 22px;
+
+      .logo {
+        font-size: 28px;
         font-weight: bold;
+        text-shadow: 0 0 20px #3b82f6;
         color: #3b82f6;
       }
-      header nav a {
-        margin-left: 20px;
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        transition: 0.3s;
-      }
-      header nav a:hover {
-        color: #3b82f6;
-      }
-      .container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      }
-      h1 {
-        text-align: center;
-        color: #1a1a1a;
-        margin-bottom: 20px;
-      }
-      p.subtitulo {
-        text-align: center;
-        color: #666;
-        margin-bottom: 40px;
-      }
-      form {
+
+      .nav-items {
         display: flex;
-        flex-direction: column;
-        gap: 20px;
+        gap: 30px;
+        flex-wrap: wrap;
+        align-items: center;
       }
-      label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #333;
-      }
-      input,
-      textarea {
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 15px;
-        width: 100%;
-      }
-      textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
-      button {
-        padding: 14px;
-        background: #3b82f6;
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 8px;
+
+      .nav-item {
+        display: flex;
+        gap: 8px;
         cursor: pointer;
-        transition: 0.3s;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
       }
-      button:hover {
-        background: #2563eb;
+
+      .nav-item:hover {
+        color: #3b82f6;
       }
-      .info {
-        margin-top: 40px;
+
+      /* FORM AREA */
+      .contact-section {
+        max-width: 700px;
+        background: #fff;
+        padding: 40px;
+        margin: 40px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .contact-section h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+        text-align: center;
+      }
+
+      .contact-section .subtitulo {
         text-align: center;
         color: #555;
+        margin-bottom: 30px;
+        font-size: 1rem;
       }
-      .info strong {
+
+      form label {
+        font-weight: bold;
         display: block;
-        margin-top: 8px;
-        color: #1a1a1a;
+        margin-bottom: 6px;
+        color: #333;
+      }
+
+      form input,
+      form textarea {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 1rem;
+        background: #f9f9f9;
+        transition: border-color 0.3s;
+      }
+
+      form input:focus,
+      form textarea:focus {
+        border-color: #3b82f6;
+        outline: none;
+      }
+
+      textarea {
+        height: 130px;
+        resize: none;
+      }
+
+      button {
+        width: 100%;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        padding: 14px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(59, 130, 246, 0.6);
+      }
+
+      .info {
+        margin-top: 25px;
+        text-align: center;
+        color: #333;
+      }
+
+      .info strong {
+        font-size: 1.2rem;
+        color: #1d4ed8;
+      }
+
+      /* RESPONSIVO */
+      @media (max-width: 768px) {
+        .contact-section {
+          padding: 25px;
+        }
+
+        .nav-items {
+          flex-direction: column;
+          gap: 15px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <header>
-      <div class="logo">MUSCLE WAY</div>
-      <nav>
-        <a href="/dashboard">Início</a>
-        <a href="/minhaconta">Minha Conta</a>
-        <a href="/sair">Sair</a>
-      </nav>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">MUSCLE WAY</div>
+
+          <div class="nav-items">
+            <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="O que você procura?"
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+
+            <a href="/dashboard" class="nav-item">
+              <span>🏠</span>
+              <span>Início</span>
+            </a>
+
+            <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
+          </div>
+
+          <div class="nav-items">
+            <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+            <a href="/sair" class="nav-item">❌ Sair</a>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <div class="container">
+    <!-- FORMULÁRIO -->
+    <section class="contact-section container">
       <h1>Atendimento ao Cliente</h1>
       <p class="subtitulo">
         Envie sua mensagem que nossa equipe entrará em contato!
       </p>
-      <form action="/atendimento" method="POST">
-        <div>
-          <label for="nome">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            placeholder="Digite seu nome"
-            required
-          />
-        </div>
-        <div>
-          <label for="email">E-mail</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Digite seu e-mail"
-            required
-          />
-        </div>
-        <div>
-          <label for="mensagem">Mensagem</label>
-          <textarea
-            id="mensagem"
-            name="mensagem"
-            placeholder="Escreva sua mensagem..."
-            required
-          ></textarea>
-        </div>
 
-        <button type="submit">Enviar</button>
+      <form action="/atendimento" method="POST">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder="Digite seu nome"
+          required
+        />
+
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Digite seu e-mail"
+          required
+        />
+
+        <label for="mensagem">Mensagem</label>
+        <textarea
+          id="mensagem"
+          name="mensagem"
+          placeholder="Escreva sua mensagem..."
+          required
+        ></textarea>
+
+        <button type="submit">Enviar Mensagem</button>
       </form>
+
       <div class="info">
-        <p>Ou se preferir, fale com a gente pelo WhatsApp:</p>
+        <p>Ou fale com a gente pelo WhatsApp:</p>
         <strong>📱 (11) 99999-9999</strong>
       </div>
-    </div>
+    </section>
   </body>
 </html>

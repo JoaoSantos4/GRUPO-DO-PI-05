@@ -76,3 +76,117 @@ INSERT INTO `funcionarios` (`usuario`, `senha`, `nome`, `email`) VALUES
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+CREATE TABLE Produtos (
+    cod_produto INT PRIMARY KEY, -- APENAS PRIMARY KEY
+    nome_produto VARCHAR(255) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    subcategoria VARCHAR(100),
+    preco_real DECIMAL(10, 2) NOT NULL,
+    disponibilidade VARCHAR(50)funcionarios
+);
+
+INSERT INTO Produtos (cod_produto, nome_produto, categoria, subcategoria, preco_real, disponibilidade) VALUES
+(490, 'BCAA Sintex 6:1:1 150g', 'Aminoácidos', 'BCAA', 32.90, 'Pronta Entrega'), 
+(523, 'BC235AA Sintex 6:1:1 300g', 'Aminoácidos', 'BCAA', 51.90, 'Pronta Entrega'),
+(17, 'BCAA Giga 1G', 'Aminoácidos', 'BCAA', 17.90, 'Pronta Entrega'),
+(498, 'Creatine Micronized 100% Pure 150g', 'Aminoácidos', 'Creatina', 69.90, 'Pronta Entrega'),
+(499, 'Creatine Micronized 100% Pure 300g', 'Aminoácidos', 'Creatina', 119.90, 'Pronta Entrega'),
+(500, 'Creatine Micronized 100% Pure 90g', 'Aminoácidos', 'Creatina', 39.90, 'Indisponível'),
+(503, 'Glutamine Powder 300g', 'Aminoácidos', 'Glutamina', 66.90, 'Pronta Entrega'),
+(502, 'Glutamine Powder 150g', 'Aminoácidos', 'Glutamina', 36.90, 'Pronta Entrega'),
+(510, 'Thermo Pro Hers (240 Mg)', 'Emagrecedores', 'Termogênico', 19.90, 'Pronta Entrega'),
+(509, 'Thermo Pro Hard (400 Mg)', 'Emagrecedores', 'Termogênico', 24.90, 'Pronta Entrega'),
+(507, 'L-Carnitine Reload', 'Emagrecedores', 'Termogênico', 29.90, 'Pronta Entrega'),
+(508, 'Testo Hard Gh - 60 Tabletes', 'Específicos', 'Pré Hormonais', 30.90, 'Pronta Entrega'),
+(518, 'Zma Up - 90 Cápsulas', 'Específicos', 'Pré Hormonais', 25.90, 'Pronta Entrega'),
+(43, 'Hipercalórico Anabolic Gainer Mass 3kg Muscle Way', 'Específicos', 'Hipercalóricos', 72.90, 'Pronta Entrega'),
+(511, 'Vit-Full - 90 Cápsulas', 'Específicos', 'Multivitamínico', 25.90, 'Pronta Entrega'),
+(47, 'Beta Nos -200 Gramas', 'Pré Treinos', 'Desempenho', 62.90, 'Pronta Entrega'),
+(501, 'Dilaton Pump - 120 Cápsulas', 'Pré Treinos', 'Vasodilatador', 42.90, 'Pronta Entrega'),
+(103, 'Top Whey - Refil 900G', 'Proteínas', 'Whey Protein', 59.90, 'Pronta Entrega'),
+(63, 'Iso Protein Complex - Refil 900g', 'Proteínas', 'Whey Protein', 75.90, 'Pronta Entrega'),
+(51, 'Isolate Whey Mix - Pote 907G', 'Proteínas', 'Whey Protein', 121.90, 'Pronta Entrega'),
+(59, 'Whey 3W Gourmet - Pote 907G', 'Proteínas', 'Whey Protein', 139.90, 'Pronta Entrega'),
+(61, 'Isolate Whey Mix - Refil 900G', 'Proteínas', 'Whey Protein', 105.40, 'Pronta Entrega'),
+(49, 'Whey 100% - Pote 907G', 'Proteínas', 'Whey Protein', 133.90, 'Pronta Entrega'),
+(45, 'Iso Whey - Pote 907G', 'Proteínas', 'Whey Protein', 201.90, 'Pronta Entrega'),
+(80, 'Kit Ganho De Peso', 'Kit Pronto', 'Ganho de Peso', 157.90, 'Pronta Entrega'),
+(84, 'Kit Ganho De Massa', 'Kit Pronto', 'Ganho de Massa', 179.90, 'Pronta Entrega'),
+(89, 'Kit Hipertrofia', 'Kit Pronto', 'Hipertrofia', 216.90, 'Pronta Entrega'),
+(100, 'Kit Emagrecedor', 'Kit Pronto', 'Emagrecimento', 219.90, 'Pronta Entrega'),
+(104, 'Kit Desempenho', 'Kit Pronto', 'Desempenho', 197.90, 'Pronta Entrega'),
+(113, 'Kit Imunidade', 'Kit Pronto', 'Imunidade', 172.90, 'Pronta Entrega'),
+(117, 'Kit Performance', 'Kit Pronto', 'Performance', 260.90, 'Pronta Entrega'),
+(107, 'Camiseta Dry Fit Never Lose Your Way', 'Acessórios', 'Vestuário', 39.90, 'Pronta Entrega'),
+(57, 'Coqueteleira Muscleway - 600 Ml', 'Acessórios', 'Coqueteleira', 15.90, 'Pronta Entrega');
+
+CREATE USER 'JoaoSantos'@'%' IDENTIFIED BY 'DeD@8689';
+GRANT ALL PRIVILEGES ON gestao TO 'JoaoSantos'@'gestao';
+
+CREATE USER 'Grazy'@'%' IDENTIFIED BY 'grazilimda';
+GRANT ALL PRIVILEGES ON gestao TO 'Grazy'@'gestao';
+
+CREATE USER 'Queiroz'@'%' IDENTIFIED BY 'Domingo-0';
+GRANT SELECT ON gestao TO 'Queiroz'@'gestao';
+GRANT UPDATE ON gestao TO 'Queiroz'@'gestao';
+
+CREATE USER 'Aline'@'%' IDENTIFIED BY 'Aline123';
+GRANT ALL PRIVILEGES ON gestao TO 'Aline'@'gestao';
+
+CREATE USER 'Felipe'@'%' IDENTIFIED BY 'FelipeTiffany110623';
+GRANT SELECT ON gestao TO 'Felipe'@'gestao';
+
+CREATE TABLE logs_produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    operacao VARCHAR(10),
+    tabela VARCHAR(50),
+    produto_id INT,
+    usuario VARCHAR(100),
+    ip_usuario VARCHAR(45),
+    valores_anteriores TEXT,
+    valores_novos TEXT,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DELIMITER //
+
+CREATE TRIGGER trg_produto_insert
+AFTER INSERT ON produtos
+FOR EACH ROW
+BEGIN
+    CALL log_produto(
+        'INSERT',
+        'produtos',
+        NEW.cod_produto,
+        NULL,
+        CONCAT('nome=', NEW.nome_produto, ', preco=', NEW.preco_real)
+    );
+END //
+
+CREATE TRIGGER trg_produto_update
+AFTER UPDATE ON produtos
+FOR EACH ROW
+BEGIN
+    CALL log_produto(
+        'UPDATE',
+        'produtos',
+        NEW.cod_produto,
+        CONCAT('nome=', OLD.nome_produto, ', preco=', OLD.preco_real),
+        CONCAT('nome=', NEW.nome_produto, ', preco=', NEW.preco_real)
+    );
+END //
+
+CREATE TRIGGER trg_produto_delete
+AFTER DELETE ON produtos
+FOR EACH ROW
+BEGIN
+    CALL log_produto(
+        'DELETE',
+        'produtos',
+        OLD.cod_produto,
+        CONCAT('nome=', OLD.nome_produto, ', preco=', OLD.preco_real),
+        NULL
+    );
+END //
+
+DELIMITER ;
