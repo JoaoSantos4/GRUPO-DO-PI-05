@@ -38,5 +38,34 @@ router.post('/login-corporativo', (req, res) => {
     }
   );
 });
+
+
+router.get('/cadastro', (req, res) => {
+  res.render('cadastro', { erro: null });
+});
+
+router.post('/cadastro', (req, res) => {
+  const { usuario, senha } = req.body;
+
+  // Verificar se já existe
+  db.query('SELECT * FROM usuarios WHERE usuario = ?', [usuario], (err, results) => {
+    if (err) throw err;
+
+    if (results.length > 0) {
+      return res.render('cadastro', { erro: 'Usuário já existe!' });
+    }
+
+    db.query(
+      'INSERT INTO usuarios (usuario, senha, tipo_id) VALUES (?, ?, 2)',
+      [usuario, senha],
+      (err2) => {
+        if (err2) throw err2;
+
+        return res.redirect('/');
+      }
+    );
+  });
+});
+
 module.exports = router;
     

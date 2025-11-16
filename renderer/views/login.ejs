@@ -110,6 +110,7 @@
       <button class="btn" onclick="mostrarLogin('cliente')">
         ÁREA CLIENTE
     </div>
+    <a href="/cadastro" class="btn">CRIAR CONTA</a>
     <div class="login-box" id="login-cliente">
       <h2>Login - Área do Cliente</h2>
       <% if (typeof erro !== 'undefined' && area === 'cliente') { %>
@@ -121,6 +122,7 @@
         <input type="password" name="senha" placeholder="Senha" required />
         <button type="submit">Entrar</button>
       </form>
+      
     <script>
       function mostrarLogin(area) {
         document.getElementById("area-selecao").style.display = "none";

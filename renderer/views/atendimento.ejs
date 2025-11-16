@@ -207,6 +207,22 @@
         Envie sua mensagem que nossa equipe entrará em contato!
       </p>
 
+      <% if (typeof sucesso !== "undefined" && sucesso) { %>
+      <div
+        style="
+          background: #d1fae5;
+          color: #065f46;
+          padding: 12px;
+          margin-bottom: 20px;
+          text-align: center;
+          border-radius: 8px;
+          font-weight: bold;
+        "
+      >
+        <%= sucesso %>
+      </div>
+      <% } %>
+
       <form action="/atendimento" method="POST">
         <label for="nome">Nome</label>
         <input
@@ -239,7 +255,7 @@
 
       <div class="info">
         <p>Ou fale com a gente pelo WhatsApp:</p>
-        <strong>📱 (11) 99999-9999</strong>
+        <strong>📱 (19) 99537-9082</strong>
       </div>
     </section>
   </body>
