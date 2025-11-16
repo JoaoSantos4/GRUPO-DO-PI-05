@@ -82,8 +82,8 @@ CREATE TABLE Produtos (
     categoria VARCHAR(100) NOT NULL,
     subcategoria VARCHAR(100),
     preco_real DECIMAL(10, 2) NOT NULL,
-    disponibilidade VARCHAR(50)funcionarios
-);
+    disponibilidade VARCHAR(50)
+); 
 
 INSERT INTO Produtos (cod_produto, nome_produto, categoria, subcategoria, preco_real, disponibilidade) VALUES
 (490, 'BCAA Sintex 6:1:1 150g', 'Aminoácidos', 'BCAA', 32.90, 'Pronta Entrega'), 
@@ -190,3 +190,62 @@ BEGIN
 END //
 
 DELIMITER ;
+
+ALTER TABLE Produtos
+ADD COLUMN estoque INT NOT NULL DEFAULT 0;
+
+UPDATE Produtos SET estoque = 20 WHERE cod_produto = 17;
+UPDATE Produtos SET estoque = 0 WHERE cod_produto = 490;
+UPDATE Produtos SET estoque = 50 WHERE cod_produto = 523;
+UPDATE Produtos SET estoque = 4 WHERE cod_produto = 498;
+UPDATE Produtos SET estoque = 61 WHERE cod_produto = 499;
+UPDATE Produtos SET estoque = 47 WHERE cod_produto = 500;
+UPDATE Produtos SET estoque = 54 WHERE cod_produto = 503;
+UPDATE Produtos SET estoque = 14 WHERE cod_produto = 502;
+UPDATE Produtos SET estoque = 35 WHERE cod_produto = 510;
+UPDATE Produtos SET estoque = 26 WHERE cod_produto = 509;
+UPDATE Produtos SET estoque = 6 WHERE cod_produto = 507;
+UPDATE Produtos SET estoque = 12 WHERE cod_produto = 508;
+UPDATE Produtos SET estoque = 32 WHERE cod_produto = 518;
+UPDATE Produtos SET estoque = 54 WHERE cod_produto = 43;
+UPDATE Produtos SET estoque = 12 WHERE cod_produto = 511;
+UPDATE Produtos SET estoque = 65 WHERE cod_produto = 47;
+UPDATE Produtos SET estoque = 13 WHERE cod_produto = 501;
+UPDATE Produtos SET estoque = 34 WHERE cod_produto = 103;
+UPDATE Produtos SET estoque = 26 WHERE cod_produto = 63;
+UPDATE Produtos SET estoque = 18 WHERE cod_produto = 51;
+UPDATE Produtos SET estoque = 37 WHERE cod_produto = 59;
+UPDATE Produtos SET estoque = 61 WHERE cod_produto = 61;
+UPDATE Produtos SET estoque = 33 WHERE cod_produto = 49;
+UPDATE Produtos SET estoque = 46 WHERE cod_produto = 45;
+UPDATE Produtos SET estoque = 42 WHERE cod_produto = 80;
+UPDATE Produtos SET estoque = 5 WHERE cod_produto = 84;
+UPDATE Produtos SET estoque = 13 WHERE cod_produto = 89;
+UPDATE Produtos SET estoque = 02 WHERE cod_produto = 100;
+UPDATE Produtos SET estoque = 17 WHERE cod_produto = 104;
+UPDATE Produtos SET estoque = 41 WHERE cod_produto = 113;
+UPDATE Produtos SET estoque = 34 WHERE cod_produto = 117;
+UPDATE Produtos SET estoque = 20 WHERE cod_produto = 107;
+UPDATE Produtos SET estoque = 44 WHERE cod_produto = 57;
+
+
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_cliente VARCHAR(100) NOT NULL,
+    email VARCHAR(120),
+    telefone VARCHAR(30),
+    total DECIMAL(10,2) NOT NULL,
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE itens_venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    venda_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (venda_id) REFERENCES vendas(id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(cod_produto)
+);
+
+SELECT * FROM itens_venda;

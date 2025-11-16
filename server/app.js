@@ -29,7 +29,8 @@ const receberRouter = require('./routers/receber')
 const relatioriosRouter = require('./routers/relatorios')
 const vendasRouter = require('./routers/vendas')
 const produtoRouter = require('./routers/Produto')
-
+const finalizarRouter = require('./routers/finalizar')
+const compra_finalizadaRouter = require('./routers/compra_finalizado')
 
 
 app.use('/', authRouter)
@@ -50,6 +51,8 @@ app.use('/receber', receberRouter)
 app.use('/relatorios', relatioriosRouter)
 app.use('/vendas', vendasRouter)
 app.use('/produto', produtoRouter)
+app.use('/finalizar', finalizarRouter)
+app.use('/compra_finalizado', compra_finalizadaRouter)
 
 app.listen(4040, ()=>{
     console.log('Servidor inicializado em http://localhost:4040')

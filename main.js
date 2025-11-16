@@ -10,3 +10,8 @@ app.whenReady().then(()=>{
     require('./server/app')
     createWindow()
 })
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit();
+});
+

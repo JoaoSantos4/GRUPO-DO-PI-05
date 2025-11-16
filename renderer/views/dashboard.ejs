@@ -349,6 +349,12 @@ body {
     .product-card {
         padding: 20px;
     }
+    .product-stock {
+        font-size: 0.85rem;
+        font-weight: bold;
+        color: #444;
+        margin-bottom: 10px;
+    }
 }
     </style>
 </head>
@@ -423,10 +429,23 @@ body {
           <p class="product-price">
             R$ <%= Number(produto.preco_real || 0).toFixed(2) %>
           </p>
-          <p class="product-status"><%= produto.disponibilidade %></p>
-          <p class="product-status <%= produto.disponibilidade.replace(/\s+/g, '-').toLowerCase() %>">
-            <%= produto.disponibilidade %>
+          <p class="product-stock">
+              Estoque: <%= produto.estoque %>
           </p>
+          <%
+          let status = "Indisponível";
+          let classeStatus = "indisponivel";
+
+          if (produto.estoque > 0) {
+                status = "Pronta Entrega";
+                classeStatus = "pronta-entrega";
+          }
+          %>
+
+          <p class="product-status <%= classeStatus %>">
+          <%= status %>
+          </p>
+
  
           <a href="/produto/<%= produto.cod_produto %>" class="btn">Ver produto</a>
         </div>

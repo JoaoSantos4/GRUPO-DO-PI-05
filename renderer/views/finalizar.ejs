@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Finalizar Compra - Muscle Way</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+      }
+      .form-box {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 500px;
+        margin: auto;
+      }
+      input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Finalizar Compra</h1>
+    <p>Preencha os dados abaixo para concluir seu pedido:</p>
+
+    <div class="form-box">
+      <form action="/compra_finalizado" method="POST">
+        <input type="text" name="nome" placeholder="Seu nome" required />
+        <input type="email" name="email" placeholder="Seu e-mail" required />
+        <input type="text" name="telefone" placeholder="Telefone" required />
+
+        <button type="submit">Concluir Compra</button>
+      </form>
+    </div>
+  </body>
+</html>

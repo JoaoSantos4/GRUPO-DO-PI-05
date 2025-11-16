@@ -189,11 +189,17 @@
         0).toFixed(2) %>
       </p>
 
+      <p><strong>Estoque:</strong> <%= produto.estoque %></p>
+
       <p><strong>Disponibilidade:</strong> <%= produto.disponibilidade %></p>
 
+      <% if (produto.estoque > 0) { %>
       <form action="/carrinho/add/<%= produto.cod_produto %>" method="POST">
         <button class="btn">Adicionar ao Carrinho</button>
       </form>
+      <% } else { %>
+      <p style="color: red; font-weight: bold">Produto esgotado</p>
+      <% } %>
     </div>
   </body>
 </html>

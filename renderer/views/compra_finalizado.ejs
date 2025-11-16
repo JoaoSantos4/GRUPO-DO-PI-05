@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Compra Finalizada - Muscle Way</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+        text-align: center;
+      }
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 500px;
+        margin: auto;
+      }
+      .btn-voltar {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>✔️ Compra Finalizada!</h1>
+      <p>Obrigado pela sua compra.</p>
+
+      <h3>ID da venda: <%= venda.id %></h3>
+      <p>Data: <%= venda.data_venda.toLocaleString() %></p>
+      <p>Total pago: R$ <%= Number(venda.total).toFixed(2) %></p>
+
+      <a href="/dashboard" class="btn-voltar">Voltar para a loja</a>
+    </div>
+  </body>
+</html>
