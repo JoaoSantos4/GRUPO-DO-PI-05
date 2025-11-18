@@ -54,6 +54,9 @@ INSERT INTO `usuarios` VALUES
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
+ALTER TABLE usuarios 
+ADD COLUMN salt VARCHAR(255) AFTER senha;
+
 CREATE TABLE IF NOT EXISTS `funcionarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(100) NOT NULL,
@@ -62,6 +65,9 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
   `email` VARCHAR(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE funcionarios
+ADD COLUMN salt VARCHAR(255) AFTER senha;
 
 INSERT INTO `funcionarios` (`usuario`, `senha`, `nome`, `email`) VALUES
 ('JoaoSantos', 'DeD@8689', 'Joao Santos', 'joao.mattos@sou.unifeob.edu.br'),
@@ -248,4 +254,32 @@ CREATE TABLE itens_venda (
     FOREIGN KEY (produto_id) REFERENCES produtos(cod_produto)
 );
 
-SELECT * FROM itens_venda;
+SELECT id, usuario, senha, salt FROM usuarios WHERE usuario = 'JoaoSantos';
+
+UPDATE usuarios 
+SET senha = 'DeD@8689', salt = NULL
+WHERE usuario = 'JoaoSantos';
+
+
+SELECT id, usuario, senha, salt FROM usuarios;
+
+SELECT * FROM usuarios;
+
+CREATE TABLE atendimento (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(120) NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE newsletter (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * FROM logs_produtos ORDER BY data DESC;
+
+SELECT * FROM logs_produtos;
+
