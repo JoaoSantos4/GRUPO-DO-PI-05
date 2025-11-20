@@ -1,3 +1,21 @@
+//antes de rodar o banco tem que criar uma procedure chamada log_produto com esse scrpt:
+CREATE DEFINER=root@localhost PROCEDURE log_produto(
+    IN p_operacao VARCHAR(10),
+    IN p_tabela VARCHAR(50),
+    IN p_produto_id INT,
+    IN p_valores_anteriores TEXT,
+    IN p_valores_novos TEXT
+)
+BEGIN
+    DECLARE v_usuario VARCHAR(100);
+    DECLARE v_ip_usuario VARCHAR(45);
+    SET v_usuario = USER();
+    SET v_ip_usuario = (SELECT SUBSTRING_INDEX(USER(), '@', -1));
+    INSERT INTO logs_produtos (operacao, tabela, produto_id, usuario, ip_usuario, valores_anteriores, valores_novos)
+    VALUES (p_operacao, p_tabela, p_produto_id, v_usuario, v_ip_usuario, p_valores_anteriores, p_valores_novos);
+END
+
+//depois cria o banco com esse script:
 CREATE DATABASE  IF NOT EXISTS `gestao` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gestao`;
 
@@ -268,7 +286,7 @@ SELECT * FROM usuarios;
 CREATE TABLE atendimento (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    email VARCHAR(120) NOT NULL,
+    email VARCHAR(120) NOT NULL,    
     mensagem TEXT NOT NULL,
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -281,5 +299,9 @@ CREATE TABLE newsletter (
 
 SELECT * FROM logs_produtos ORDER BY data DESC;
 
-SELECT * FROM logs_produtos;
+        SELECT * FROM logs_produtos;
 
+
+UPDATE usuarios 
+SET salt = ''
+WHERE salt IS NULL;
