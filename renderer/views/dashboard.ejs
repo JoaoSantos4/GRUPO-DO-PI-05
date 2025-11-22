@@ -92,9 +92,9 @@ body {
 /* --- HERO SECTION (BANNER PRINCIPAL) --- */
 .hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 60vh;
     /* Imagem de fundo escura para contraste */
-    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23333" width="1920" height="1080"/><text x="960" y="540" fill="%23666" text-anchor="middle" font-size="48">MUSCLE TRAINING</text></svg>');
+    background: linear-gradient(rgb(0, 0, 0), rgba(41, 41, 41, 0.897));
     background-size: cover;
     background-position: center;
     display: flex;
@@ -320,6 +320,12 @@ body {
     font-size: 0.9rem;
 }
 
+#sair{
+        background: #ef4444;
+        padding: 8px 12px;
+        border-radius: 6px;
+      }
+
 /* --- MOBILE / RESPONSIVO --- */
 @media (max-width: 768px) {
     .header-content {
@@ -387,8 +393,7 @@ body {
                         <span>🛒</span>
                         <span>Carrinho</span>
                     </a>
-                    <a href="/sair" class="nav-item">
-                        <span>❌</span>
+                    <a href="/sair" id='sair' class="nav-item">
                         <span>Sair</span>
                     </a>
                 </div>
