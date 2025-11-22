@@ -1,22 +1,49 @@
 {
-  "name": "app_gestaoususrio",
+  "name": "app_gestaousuario",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicativo MuscleWay",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "electron-builder"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "build": {
+    "appId": "com.muscleway.cliente",
+    "productName": "Cliente MuscleWay",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "server/**/*",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server",
+        "to": "app/server"
+      },
+      {
+        "from": "renderer",
+        "to": "app/renderer"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    }
+  },
   "dependencies": {
     "ejs": "^3.1.10",
-    "electron": "^38.1.0",
-    "electron-builder": "^26.0.12",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "mysql2": "^3.14.5"
+  },
+  "devDependencies": {
+    "electron": "^38.1.0",
+    "electron-builder": "^26.0.12"
   }
 }

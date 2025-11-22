@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../utils/db');
 
-// Exibe o formulário
 router.get('/', (req, res) => {
     if (!req.session.usuario) {
         return res.redirect('/');
@@ -14,8 +13,9 @@ router.get('/', (req, res) => {
     });
 });
 
-// Recebe o formulário e salva no banco
 router.post('/', (req, res) => {
+    if (!req.session.usuario) return res.redirect('/');
+
     const { nome, email, mensagem } = req.body;
 
     db.query(

@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../utils/db');
 
-// Finalizar compra (POST)
 router.post('/', (req, res) => {
     if (!req.session.usuario) return res.redirect('/');
 
@@ -16,7 +15,6 @@ router.post('/', (req, res) => {
     const total = carrinho.reduce((acc, item) =>
         acc + (item.preco_real * item.quantidade), 0);
 
-    // 1️⃣ Inserir na tabela vendas
     const vendaSQL = `
         INSERT INTO vendas (nome_cliente, email, telefone, total)
         VALUES (?, ?, ?, ?)
@@ -30,7 +28,6 @@ router.post('/', (req, res) => {
 
         const vendaID = vendaResultado.insertId;
 
-        // 2️⃣ Inserir itens da venda
         const itensSQL = `
             INSERT INTO itens_venda (venda_id, produto_id, quantidade, preco_unitario)
             VALUES ?
@@ -49,11 +46,10 @@ router.post('/', (req, res) => {
                 return res.status(500).send("Erro ao salvar itens da venda.");
             }
 
-            // 3️⃣ Atualizar estoque
             let updates = carrinho.map(item => {
                 return new Promise((resolve, reject) => {
                     db.query(
-                        "UPDATE Produtos SET estoque = estoque - ? WHERE cod_produto = ?",
+                        "UPDATE produtos SET estoque = estoque - ? WHERE cod_produto = ?",
                         [item.quantidade, item.cod_produto],
                         (err) => err ? reject(err) : resolve()
                     );
@@ -62,10 +58,8 @@ router.post('/', (req, res) => {
 
             Promise.all(updates)
                 .then(() => {
-                    // 4️⃣ Limpar carrinho
                     req.session.carrinho = [];
 
-                    // 5️⃣ Buscar venda completa para exibir
                     db.query("SELECT * FROM vendas WHERE id = ?", [vendaID], (err, vendaDados) => {
                         if (err || vendaDados.length === 0) {
                             return res.send("Erro ao buscar venda finalizada.");

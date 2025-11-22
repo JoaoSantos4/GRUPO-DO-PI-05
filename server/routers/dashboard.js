@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../utils/db');
 
 // =========================
 // DASHBOARD PRINCIPAL
 // =========================
 router.get('/', (req, res) => {
-  db.query('SELECT * FROM Produtos', (error, resultados) => {
+  db.query('SELECT * FROM produtos', (error, resultados) => {
     if (error) {
       console.error('Erro ao carregar produtos:', error);
       return res.status(500).send('Erro ao carregar produtos');
     }
-
-    console.log(resultados);
 
     res.render('dashboard', {
       usuario: req.session.usuario,
@@ -21,36 +19,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// =========================
-// ROTAS ANTIGAS DO USUÁRIO
-// =========================
-router.get('/atendimento', (req, res) => {
-  res.send('Página de atendimento');
-});
-
-router.get('/minhaconta', (req, res) => {
-  res.send('Página Minha Conta');
-});
-
-router.get('/sobrenos', (req, res) => {
-  res.send('Página Sobre Nós');
-});
-
-router.get('/sair', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
-});
-
-// ROTA ANTIGA DO CARRINHO
-router.get('/carrinho', (req, res) => {
-  res.send('Página do Carrinho');
-});
-
-// =====================================================================================
-// 🔵 NOVAS ROTAS DO CARRINHO, FINALIZAÇÃO DE COMPRA, ESTOQUE E REGISTRO DE VENDAS
-// =====================================================================================
-
-// CARRINHO REAL COM EJS (não substitui a rota antiga, apenas outra funcionalidade)
+// CARRINHO REAL COM EJS
 router.get('/loja/carrinho', (req, res) => {
   const carrinho = req.session.carrinho || [];
   res.render('carrinho', { carrinho });
@@ -76,14 +45,14 @@ router.post('/carrinho/add/:id', async (req, res) => {
   req.session.carrinho.push({
     id: produto.cod_produto,
     nome: produto.nome_produto,
-    preco: produto.preco_real,
+    preco: produto.preco_real, 
     quantidade: 1
   });
 
   res.redirect('/loja/carrinho');
 });
 
-// PÁGINA DE FINALIZAÇÃO DE COMPRA
+// PÁGINA DE FINALIZAÇÃO
 router.get('/finalizar', (req, res) => {
   const carrinho = req.session.carrinho || [];
 
@@ -94,7 +63,7 @@ router.get('/finalizar', (req, res) => {
   res.render('finalizar', { carrinho });
 });
 
-// FINALIZAR COMPRA (GRAVA VENDA, ITENS E TIRA DO ESTOQUE)
+// FINALIZAR COMPRA
 router.post('/finalizar', async (req, res) => {
   const { nome, email, telefone } = req.body;
   const carrinho = req.session.carrinho || [];
@@ -106,7 +75,6 @@ router.post('/finalizar', async (req, res) => {
   try {
     const total = carrinho.reduce((s, p) => s + (p.preco * p.quantidade), 0);
 
-    // REGISTRAR VENDA
     const [resultado] = await db.query(
       "INSERT INTO vendas (nome_cliente, email, telefone, total) VALUES (?, ?, ?, ?)",
       [nome, email, telefone, total]
@@ -114,7 +82,6 @@ router.post('/finalizar', async (req, res) => {
 
     const vendaId = resultado.insertId;
 
-    // REGISTRAR ITENS E DAR BAIXA NO ESTOQUE
     for (const item of carrinho) {
       await db.query(
         "INSERT INTO itens_venda (venda_id, produto_id, quantidade, preco_unitario) VALUES (?, ?, ?, ?)",
@@ -127,10 +94,9 @@ router.post('/finalizar', async (req, res) => {
       );
     }
 
-    // LIMPAR CARRINHO
     req.session.carrinho = [];
 
-    res.redirect(`/compra-finalizada/${vendaId}`);
+    res.redirect(`/compra_finalizado/${vendaId}`);
 
   } catch (err) {
     console.log(err);
@@ -138,8 +104,8 @@ router.post('/finalizar', async (req, res) => {
   }
 });
 
-// PÁGINA DE COMPRA FINALIZADA
-router.get('/compra-finalizada/:id', async (req, res) => {
+// PÁGINA COMPRA FINALIZADA
+router.get('/compra_finalizado/:id', async (req, res) => {
   const id = req.params.id;
 
   const [venda] = await db.query("SELECT * FROM vendas WHERE id = ?", [id]);
@@ -148,7 +114,7 @@ router.get('/compra-finalizada/:id', async (req, res) => {
     return res.send("Venda não encontrada!");
   }
 
-  res.render('compra_finalizada', { venda: venda[0] });
+  res.render('compra_finalizado', { venda: venda[0] });
 });
 
 module.exports = router;

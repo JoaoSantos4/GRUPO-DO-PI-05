@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../utils/db');
 
-// Recebe o email da newsletter
 router.post('/', (req, res) => {
     const { email } = req.body;
 
@@ -11,18 +10,19 @@ router.post('/', (req, res) => {
         [email],
         (err) => {
             if (err) {
-                // Caso o email já exista na tabela
+
                 if (err.code === "ER_DUP_ENTRY") {
                     return res.render('sobrenos', {
-                        usuario: req.session.usuario,
+                        usuario: req.session.usuario || null,
                         sucesso: "Esse e-mail já está cadastrado!"
                     });
                 }
+
                 throw err;
             }
 
             return res.render('sobrenos', {
-                usuario: req.session.usuario,
+                usuario: req.session.usuario || null,
                 sucesso: "Obrigado! Você receberá nossas promoções em primeira mão!"
             });
         }

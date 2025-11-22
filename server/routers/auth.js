@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../utils/db');
 
 // Importar funções de hash
 const { gerarHash, validarSenha } = require('../utils/hash');

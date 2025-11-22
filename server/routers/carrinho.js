@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../utils/db');
 
 // Página do carrinho
 router.get('/', (req, res) => {
@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
 
   const carrinho = req.session.carrinho || [];
 
-  // Calcular total
   const total = carrinho.reduce((acc, item) => acc + item.preco_real * item.quantidade, 0);
 
   res.render('carrinho', {
@@ -22,10 +21,8 @@ router.get('/', (req, res) => {
 router.post('/add/:id', (req, res) => {
   const id = req.params.id;
 
-  // Se não existir carrinho, cria
   if (!req.session.carrinho) req.session.carrinho = [];
 
-  // Verificar se item já está no carrinho
   const itemExistente = req.session.carrinho.find(p => p.cod_produto == id);
 
   if (itemExistente) {
@@ -33,8 +30,7 @@ router.post('/add/:id', (req, res) => {
     return res.redirect('/carrinho');
   }
 
-  // Buscar produto no banco
-  db.query('SELECT * FROM Produtos WHERE cod_produto = ?', [id], (error, resultados) => {
+  db.query('SELECT * FROM produtos WHERE cod_produto = ?', [id], (error, resultados) => {
     if (error || resultados.length === 0) {
       return res.status(500).send('Erro ao adicionar ao carrinho');
     }

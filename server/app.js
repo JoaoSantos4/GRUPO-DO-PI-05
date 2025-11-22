@@ -1,18 +1,34 @@
-const express = require('express')
-const path = require('path')
-const session = require('express-session')
-const app = express()
-app.set('view engine' ,'ejs')
-app.set('views', path.join(__dirname, '../renderer/views'))
-app.use(express.static(path.join(__dirname, '../renderer/public')))
-app.use(express.urlencoded({extended: false}))
+const express = require("express");
+const path = require("path");
+const session = require("express-session");
+
+const app = express();
+
+const isPackaged = process.env.ELECTRON_IS_PACKAGED === "true";
+
+const basePath = isPackaged
+    ? path.join(process.resourcesPath, "app.asar", "renderer")
+    : path.join(__dirname, "../renderer");
+
+console.log("BasePath carregado:", basePath);
+
+app.set("view engine", "ejs");
+app.set("views", path.join(basePath, "views"));
+app.use(express.static(path.join(basePath, "public")));
+
+app.use(express.urlencoded({ extended: false }));
+
 app.use(session({
-    secret: 'segredo-super-seguro',
+    secret: "segredo-super-seguro",
     resave: false,
-    saveUninitialized: false,
-}))
-const authRouter = require('./routers/auth')
-const dashboardRouter = require('./routers/dashboard')
+    saveUninitialized: false
+}));
+
+// Rotas...
+// (mantenha todas as suas rotas aqui exatamente como estão)
+
+const authRouter = require("./routers/auth");
+const dashboardRouter = require("./routers/dashboard");
 const atendimentoRouter = require('./routers/atendimento')
 const sairRouter = require('./routers/sair') 
 const carrinhoRouter = require('./routers/carrinho')
@@ -23,15 +39,15 @@ const privacidadeRouter = require('./routers/privacidade')
 const adminRouter = require('./routers/admin')
 const pegarRouter = require('./routers/pagar')
 const vendasRouter = require('./routers/vendas')
-const produtoRouter = require('./routers/Produto')
+const produtoRouter = require('./routers/produto')
 const finalizarRouter = require('./routers/finalizar')
 const compra_finalizadaRouter = require('./routers/compra_finalizado')
 const cadastroRouter = require('./routers/cadastro')
-const newsletterRoute = require('./routers/newsletter');
+const newsletterRoute = require('./routers/newsletter')
 
 
-app.use('/', authRouter)
-app.use('/dashboard', dashboardRouter)
+app.use("/", authRouter);
+app.use("/dashboard", dashboardRouter);
 app.use('/atendimento', atendimentoRouter)
 app.use('/sair', sairRouter)
 app.use('/carrinho', carrinhoRouter)
@@ -46,10 +62,11 @@ app.use('/produto', produtoRouter)
 app.use('/finalizar', finalizarRouter)
 app.use('/compra_finalizado', compra_finalizadaRouter)
 app.use('/cadastro', cadastroRouter)
-app.use('/newsletter', newsletterRoute);
+app.use('/newsletter', newsletterRoute)
 
 
+const PORT = 4040;
 
-app.listen(4040, ()=>{
-    console.log('Servidor inicializado em http://localhost:4040')
-})
+app.listen(PORT, "127.0.0.1", () => {
+    console.log(`Servidor rodando em http://127.0.0.1:${PORT}`);
+});
