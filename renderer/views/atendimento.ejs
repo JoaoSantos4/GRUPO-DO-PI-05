@@ -15,7 +15,7 @@
 
       body {
         font-family: "Arial", sans-serif;
-        background-color: #1a1a1a;
+        background-color: #f5f5f5;
         color: #1a1a1a;
       }
 
@@ -42,53 +42,85 @@
       .logo {
         font-size: 28px;
         font-weight: bold;
-        text-shadow: 0 0 20px #3b82f6;
         color: #3b82f6;
+        text-shadow: 0 0 20px #3b82f6;
       }
 
       .nav-items {
         display: flex;
-        gap: 30px;
-        flex-wrap: wrap;
         align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
       }
 
       .nav-item {
         display: flex;
+        align-items: center;
         gap: 8px;
         cursor: pointer;
         text-decoration: none;
         color: inherit;
-        transition: all 0.3s ease;
+        transition: 0.2s;
+        font-weight: 500;
       }
 
       .nav-item:hover {
         color: #3b82f6;
       }
 
-      /* FORM AREA */
+      #sair {
+        background: #ef4444;
+        padding: 8px 12px;
+        border-radius: 6px;
+        color: white !important;
+        font-weight: bold;
+      }
+
+      /* BARRA DE BUSCA */
+      .search-container {
+        position: relative;
+        min-width: 300px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      /* FORM SECTION */
       .contact-section {
         max-width: 700px;
-        background: #fff;
+        background: white;
         padding: 40px;
         margin: 40px auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
       }
 
       .contact-section h1 {
         font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #1a1a1a;
         text-align: center;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #1a1a1a;
       }
 
-      .contact-section .subtitulo {
+      .subtitulo {
         text-align: center;
         color: #555;
         margin-bottom: 30px;
-        font-size: 1rem;
+        font-size: 0.95rem;
       }
 
       form label {
@@ -107,7 +139,6 @@
         border-radius: 10px;
         font-size: 1rem;
         background: #f9f9f9;
-        transition: border-color 0.3s;
       }
 
       form input:focus,
@@ -131,7 +162,7 @@
         border-radius: 10px;
         font-size: 1rem;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: 0.25s ease;
         box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
       }
 
@@ -150,28 +181,10 @@
         font-size: 1.2rem;
         color: #1d4ed8;
       }
-
-      #sair {
-        background: #ef4444;
-        padding: 8px 12px;
-        border-radius: 6px;
-      }
-      /* RESPONSIVO */
-      @media (max-width: 768px) {
-        .contact-section {
-          padding: 25px;
-        }
-
-        .nav-items {
-          flex-direction: column;
-          gap: 15px;
-        }
-      }
     </style>
   </head>
 
   <body>
-    <!-- HEADER -->
     <header class="header">
       <div class="container">
         <div class="header-content">
@@ -189,23 +202,17 @@
               <span class="search-icon">🔍</span>
             </div>
 
-            <a href="/dashboard" class="nav-item">
-              <span>🏠</span>
-              <span>Início</span>
-            </a>
-
+            <a href="/dashboard" class="nav-item">🏠 Início</a>
             <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
-          </div>
-
-          <div class="nav-items">
             <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+            <a href="/minhas_compras" class="nav-item">🧾 Minhas Compras</a>
+
             <a href="/sair" id="sair" class="nav-item">Sair</a>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- FORMULÁRIO -->
     <section class="contact-section container">
       <h1>Atendimento ao Cliente</h1>
       <p class="subtitulo">

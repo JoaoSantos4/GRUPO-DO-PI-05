@@ -20,7 +20,7 @@
         padding-bottom: 40px;
       }
 
-      /* HEADER (mesmo do dashboard) */
+      /* HEADER */
       .header {
         background-color: #1a1a1a;
         color: white;
@@ -38,6 +38,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        width: 100%;
       }
 
       .logo {
@@ -50,7 +51,7 @@
       .nav-items {
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 28px;
         flex-wrap: wrap;
       }
 
@@ -61,11 +62,20 @@
         text-decoration: none;
         color: inherit;
         cursor: pointer;
-        transition: 0.3s;
+        transition: 0.2s;
+        font-weight: 500;
       }
 
       .nav-item:hover {
         color: #3b82f6;
+      }
+
+      #sair {
+        background: #ef4444;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: white !important;
       }
 
       .search-container {
@@ -78,6 +88,7 @@
         padding: 12px 40px 12px 12px;
         border: 1px solid #ddd;
         border-radius: 8px;
+        font-size: 14px;
       }
 
       .search-icon {
@@ -85,6 +96,7 @@
         right: 12px;
         top: 50%;
         transform: translateY(-50%);
+        color: #666;
       }
 
       /* TÍTULO */
@@ -96,7 +108,7 @@
         color: #1a1a1a;
       }
 
-      /* TABELA BONITA */
+      /* TABELA */
       .cart-table {
         width: 100%;
         margin-top: 40px;
@@ -161,7 +173,28 @@
         background: linear-gradient(135deg, #60a5fa, #3b82f6);
       }
 
-      /* TOTAL */
+      /* FINALIZAR COMPRA */
+      .btn-finalizar {
+        margin-top: 20px;
+        width: 100%;
+        padding: 15px 0;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        background: linear-gradient(135deg, #10b981, #059669);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        transition: all 0.25s ease;
+      }
+
+      .btn-finalizar:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, #34d399, #10b981);
+        box-shadow: 0 8px 20px rgba(52, 211, 153, 0.5);
+      }
+
       .total-box {
         margin-top: 30px;
         text-align: right;
@@ -169,31 +202,16 @@
         font-weight: 900;
         color: #1d4ed8;
       }
-
-      #sair {
-        background: #ef4444;
-        padding: 8px 12px;
-        border-radius: 6px;
-      }
-      /* RESPONSIVO */
-      @media (max-width: 700px) {
-        .cart-table td {
-          padding: 10px;
-        }
-        .cart-table img {
-          width: 50px;
-        }
-      }
     </style>
   </head>
 
   <body>
-    <!-- HEADER COPIADO DO DASHBOARD -->
     <header class="header">
       <div class="container">
         <div class="header-content">
           <div class="logo">MUSCLE WAY</div>
 
+          <!-- MENU AGRUPADO -->
           <div class="nav-items">
             <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
 
@@ -206,16 +224,14 @@
               <span class="search-icon">🔍</span>
             </div>
 
-            <a href="/dashboard" class="nav-item">
-              <span>🏠</span>
-              <span>Início</span>
-            </a>
-
+            <a href="/dashboard" class="nav-item">🏠 Início</a>
             <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
-          </div>
+            <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
 
-          <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
-          <a href="/sair" id="sair" class="nav-item">Sair</a>
+            <a href="/minhas_compras" class="nav-item">🧾 Minhas Compras</a>
+
+            <a href="/sair" id="sair" class="nav-item">Sair</a>
+          </div>
         </div>
       </div>
     </header>
@@ -244,7 +260,10 @@
         <td><img src="/images/<%= item.cod_produto %>.png" /></td>
         <td><%= item.nome_produto %></td>
         <td><%= item.quantidade %></td>
-        <td>R$ <%= (item.preco_real * item.quantidade).toFixed(2) %></td>
+        <td>
+          R$ <%= (Number(item.preco_real) * Number(item.quantidade)).toFixed(2)
+          %>
+        </td>
         <td>
           <form action="/carrinho/remove/<%= item.cod_produto %>" method="POST">
             <button class="btn btn-danger">Remover 1</button>

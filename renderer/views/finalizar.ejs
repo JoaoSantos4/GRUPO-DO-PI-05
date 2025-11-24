@@ -2,42 +2,186 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Finalizar Compra - Muscle Way</title>
+
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f9;
-        padding: 20px;
+      /* RESET */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f6f9;
+        color: #1a1a1a;
+      }
+
+      /* HEADER */
+      .header {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 20px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #3b82f6;
+        text-shadow: 0 0 20px #3b82f6;
+      }
+
+      .nav-items {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        flex-wrap: nowrap;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition: 0.2s;
+        font-weight: 500;
+      }
+
+      .nav-item:hover {
+        color: #3b82f6;
+      }
+
+      #sair {
+        background: #ef4444;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: white !important;
+      }
+
+      /* SEARCH */
+      .search-container {
+        position: relative;
+        min-width: 300px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      /* FORM SECTION */
+      h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2rem;
+        font-weight: 900;
+      }
+
       .form-box {
         background: white;
-        padding: 20px;
+        padding: 25px;
         border-radius: 12px;
         max-width: 500px;
-        margin: auto;
+        margin: 30px auto;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       }
+
       input {
         width: 100%;
         padding: 12px;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         border-radius: 8px;
         border: 1px solid #ccc;
+        font-size: 16px;
       }
+
       button {
         width: 100%;
-        padding: 12px;
-        background: #28a745;
+        padding: 14px;
+        background: linear-gradient(135deg, #10b981, #059669);
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: bold;
+        transition: 0.25s;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, #34d399, #10b981);
+        box-shadow: 0 8px 20px rgba(52, 211, 153, 0.5);
       }
     </style>
   </head>
+
   <body>
+    <!-- HEADER COMPLETO -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">MUSCLE WAY</div>
+
+          <div class="nav-items">
+            <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="O que você procura?"
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+
+            <a href="/dashboard" class="nav-item">🏠 Início</a>
+            <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
+            <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+            <a href="/minhas_compras" class="nav-item">🧾 Minhas Compras</a>
+
+            <a href="/sair" id="sair" class="nav-item">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO -->
     <h1>Finalizar Compra</h1>
-    <p>Preencha os dados abaixo para concluir seu pedido:</p>
+    <p style="text-align: center; margin-bottom: 15px">
+      Preencha os dados abaixo para concluir seu pedido:
+    </p>
 
     <div class="form-box">
       <form action="/compra_finalizado" method="POST">

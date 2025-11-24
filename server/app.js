@@ -44,6 +44,7 @@ const finalizarRouter = require('./routers/finalizar')
 const compra_finalizadaRouter = require('./routers/compra_finalizado')
 const cadastroRouter = require('./routers/cadastro')
 const newsletterRoute = require('./routers/newsletter')
+const minhas_comprasRoute = require('./routers/minhas_compras')
 
 
 app.use("/", authRouter);
@@ -63,6 +64,7 @@ app.use('/finalizar', finalizarRouter)
 app.use('/compra_finalizado', compra_finalizadaRouter)
 app.use('/cadastro', cadastroRouter)
 app.use('/newsletter', newsletterRoute)
+app.use('/minhas_compras', minhas_comprasRoute)
 
 
 const PORT = 4040;

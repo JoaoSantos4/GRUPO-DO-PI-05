@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minhas Compras - Muscle Way</title>
+
+    <style>
+      /* RESET */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
+
+      /* HEADER PADRONIZADO */
+      .header {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 20px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px; /* 🔥 Espaço entre as seções */
+        white-space: nowrap; /* 🔥 Agora nada quebra */
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 0 0 20px #3b82f6;
+        color: #3b82f6;
+      }
+
+      .nav-items {
+        display: flex;
+        align-items: center;
+        gap: 25px; /* 🔥 Espaço entre os itens */
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        font-weight: bold;
+      }
+
+      .nav-item:hover {
+        color: #3b82f6;
+      }
+
+      /* SEARCH */
+      .search-container {
+        position: relative;
+        width: 280px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      /* BOTÃO SAIR */
+      #sair {
+        background: #ef4444;
+        padding: 8px 15px;
+        border-radius: 6px;
+        color: white;
+      }
+
+      /* TÍTULO */
+      .page-title {
+        margin: 40px 0 20px;
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #1f2937;
+        text-transform: uppercase;
+      }
+
+      /* TABELA */
+      .table-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .main-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .main-table th {
+        background: #1a1a1a;
+        color: white;
+        padding: 15px;
+        text-transform: uppercase;
+      }
+
+      .main-table td {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+      }
+
+      /* RESPONSIVIDADE */
+      @media (max-width: 768px) {
+        .nav-items {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .search-container {
+          min-width: 100%;
+        }
+
+        .page-title {
+          font-size: 1.6rem;
+        }
+
+        .main-table th,
+        .main-table td {
+          font-size: 0.8rem;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER PADRÃO -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">MUSCLE WAY</div>
+
+          <div class="nav-items">
+            <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="O que você procura?"
+              />
+              <span class="search-icon">🔍</span>
+            </div>
+
+            <a href="/dashboard" class="nav-item">🏠 Início</a>
+            <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
+          </div>
+
+          <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+
+          <a href="/minhas_compras" class="nav-item">🧾 Minhas Compras</a>
+
+          <a href="/sair" id="sair" class="nav-item">Sair</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- TITULO -->
+    <h1 class="page-title">🧾 Minhas Compras</h1>
+
+    <!-- LISTAGEM -->
+    <% if (compras.length === 0) { %>
+
+    <h2 style="text-align: center; margin-top: 20px">
+      Você ainda não realizou compras 🛒
+    </h2>
+
+    <% } else { %>
+
+    <div class="table-container">
+      <table class="main-table">
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Preço Unitário</th>
+          <th>Total</th>
+          <th>Data</th>
+        </tr>
+
+        <% compras.forEach(item => { %>
+        <tr>
+          <td><%= item.nome_produto %></td>
+          <td><%= item.quantidade %></td>
+
+          <td>R$ <%= Number(item.preco_unitario).toFixed(2) %></td>
+          <td>R$ <%= Number(item.total).toFixed(2) %></td>
+
+          <td><%= new Date(item.data_venda).toLocaleString() %></td>
+        </tr>
+        <% }) %>
+      </table>
+    </div>
+
+    <% } %>
+  </body>
+</html>

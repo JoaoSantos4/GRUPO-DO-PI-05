@@ -36,6 +36,10 @@ router.post('/add/:id', (req, res) => {
     }
 
     const produto = resultados[0];
+
+    // 🔥 CORREÇÃO CRÍTICA — converter preco_real para número
+    produto.preco_real = Number(produto.preco_real);
+
     produto.quantidade = 1;
 
     req.session.carrinho.push(produto);

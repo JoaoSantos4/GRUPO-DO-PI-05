@@ -1,491 +1,406 @@
-  <!DOCTYPE html>
-  <html lang="pt-BR">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Sobre Nós - Muscle Way</title>
-      <style>
-        body {
-          margin: 0;
-          font-family: Arial, sans-serif;
-          background-color: #000;
-          color: #fff;
-        }
-        header {
-          background: #1a1a1a;
-          padding: 15px 30px;
-          color: white;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 1000;
-        }
-        header .logo {
-          font-size: 22px;
-          font-weight: bold;
-          color: #3b82f6;
-        }
-        header nav a {
-          margin-left: 20px;
-          text-decoration: none;
-          color: white;
-          font-weight: bold;
-          transition: 0.3s;
-        }
-        header nav a:hover {
-          color: #3b82f6;
-        }
-        main {
-          text-align: center;
-          padding-top: 120px;
-        }
-        h1 {
-          font-size: 3em;
-          letter-spacing: 0.04em;
-          margin-top: 40px;
-          text-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff;
-          color: #fff;
-        }
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nós - Muscle Way</title>
 
-        p{
-          margin-bottom: 10px;
-        }
-        .content {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-top: 80px;
-          gap: 100px;
-          flex-wrap: wrap;
-        }
-        .card {
-          width: 250px;
-          padding: 20px;
-          border-radius: 20px;
-          background: rgba(0, 0, 0, 0.8);
-          box-shadow: 0 0 20px #00bfff;
-          transition: transform 0.3s;
-        }
-        .card:hover {
-          transform: scale(1.05);
-        }
-        .icon {
-          font-size: 40px;
-          margin-bottom: 10px;
-        }
-        .image-center {
-          width: 250px;
-          border-radius: 20px;
-          box-shadow: 0 0 20px #00bfff;
-          transition: transform 0.3s;
-        }
-        .image-center:hover {
-          transform: scale(1.05);
-        }
-        footer {
-          background-color: #111;
-          padding: 20px 10px;
-          margin-top: 20px;
-          font-size: 14px;
-          color: #ccc;
-        }
-        footer .newsletter {
-          background-color: #007bff;
-          padding: 15px;
-          border-radius: 8px;
-          color: white;
-          margin-bottom: 10px;
-        }
-        footer input[type="email"] {
-          padding: 8px;
-          border: none;
-          border-radius: 4px;
-          width: 250px;
-        }
-        footer button {
-          padding: 8px 15px;
-          background-color: black;
-          border: 1px solid white;
-          color: white;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-        footer .links {
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          margin-top: 10px;
-        }
-        footer a {
-          color: #ccc;
-          text-decoration: none;
-          display: block;
-          margin: 5px 0;
-        }
-        footer a:hover {
-          color: white;
-        }
-        .section-title {
-          font-weight: bold;
-          color: white;
-          margin-bottom: 10px;
-        }
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-  }
-
-  .header {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 20px 0;
-  }
-
-  .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-  }
-
-  .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-  }
-
-  .logo {
-    margin-right: 30px;
-    letter-spacing: 0.1em;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 20px #3b82f6;
-      color: #3b82f6;
-  }
-
-  .nav-items {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
-  }
-
-  .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: inherit;
-      margin-left: 30px;
-  }
-
-  .nav-item:hover {
-      color: #3b82f6;
-  }
-
-  .search-container {
-      position: relative;
-      min-width: 300px;
-  }
-
-  .search-input {
-      width: 100%;
-      padding: 12px 40px 12px 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 14px;
-  }
-
-  .search-icon {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #666;
-  }
-
-  #sair{
-        background: #ef4444;
-        padding: 8px 12px;
-        border-radius: 6px;
-        margin-left: 20px;
+    <style>
+      /* RESET */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
-  /* RESPONSIVO */
-  @media (max-width: 768px) {
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+      }
+
+      /* HEADER PADRÃO */
+      .header {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 20px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
       .header-content {
-          flex-direction: column;
-          gap: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 0 0 20px #3b82f6;
+        color: #3b82f6;
       }
 
       .nav-items {
-          flex-direction: column;
-          gap: 15px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .nav-item:hover {
+        color: #3b82f6;
       }
 
       .search-container {
-          min-width: 250px;
+        position: relative;
+        min-width: 300px;
       }
-  }
 
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      #sair {
+        background: #ef4444;
+        padding: 8px 12px;
+        border-radius: 6px;
+        color: white;
+      }
+
+      /* SOBRE NÓS */
+      main {
+        text-align: center;
+        padding-top: 120px;
+      }
+
+      h1 {
+        font-size: 3em;
+        letter-spacing: 0.04em;
+        margin-top: 40px;
+        text-shadow: 0 0 25px #00bfff;
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 80px;
+        gap: 100px;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        width: 260px;
+        padding: 20px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 20px #00bfff;
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .icon {
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+
+      .image-center {
+        width: 250px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px #00bfff;
+        transition: 0.3s;
+      }
+
+      .image-center:hover {
+        transform: scale(1.05);
+      }
+
+      /* FOOTER */
       footer {
-  background-color: #0d0d0d;
-  padding: 60px 20px;
-  margin-top: 120px;
-  font-size: 15px;
-  color: #ccc;
-  border-top: 1px solid #1f1f1f;
-  box-shadow: 0 -10px 30px rgba(0, 191, 255, 0.15);
-}
+        background-color: #0d0d0d;
+        padding: 60px 20px;
+        margin-top: 120px;
+        font-size: 15px;
+        color: #ccc;
+        border-top: 1px solid #1f1f1f;
+        box-shadow: 0 -10px 30px rgba(0, 191, 255, 0.15);
+      }
 
-/* Newsletter */
-footer .newsletter {
-  background: linear-gradient(90deg, #007bff, #00bfff);
-  padding: 25px;
-  border-radius: 12px;
-  color: white;
-  margin-bottom: 20px;
-  text-align: center;
-  box-shadow: 0 0 25px rgba(0, 191, 255, 0.4);
-  font-weight: bold;
-}
+      /* Newsletter */
+      footer .newsletter {
+        background: linear-gradient(90deg, #007bff, #00bfff);
+        padding: 25px;
+        border-radius: 12px;
+        color: white;
+        margin-bottom: 20px;
+        text-align: center;
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.4);
+        font-weight: bold;
+      }
 
-footer .newsletter p {
-  margin-bottom: 12px;
-  font-size: 17px;
-}
+      footer .newsletter p {
+        margin-bottom: 12px;
+        font-size: 17px;
+      }
 
-footer input[type="email"] {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  width: 280px;
-  margin-right: 10px;
-  background: #111;
-  color: white;
-  border: 1px solid #333;
-  transition: 0.3s;
-}
+      footer input[type="email"] {
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        width: 280px;
+        margin-right: 10px;
+        background: #111;
+        color: white;
+        border: 1px solid #333;
+        transition: 0.3s;
+      }
 
-footer input[type="email"]:focus {
-  outline: none;
-  border-color: #00bfff;
-  box-shadow: 0 0 15px #00bfff;
-}
+      footer input[type="email"]:focus {
+        outline: none;
+        border-color: #00bfff;
+        box-shadow: 0 0 15px #00bfff;
+      }
 
-footer button {
-  padding: 10px 18px;
-  background: #000;
-  border: 1px solid white;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-weight: bold;
-}
+      footer button {
+        padding: 10px 18px;
+        background: #000;
+        border: 1px solid white;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+      }
 
-footer button:hover {
-  background: #111;
-  box-shadow: 0 0 15px #00bfff;
-}
+      footer button:hover {
+        background: #111;
+        box-shadow: 0 0 15px #00bfff;
+      }
 
-/* LINKS */
-footer .links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 40px;
-  margin-top: 10px;
-  text-align: left;
-}
+      /* LINKS */
+      footer .links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 40px;
+        margin-top: 10px;
+        text-align: left;
+      }
 
-footer .section-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px #00bfff;
-}
+      footer .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px #00bfff;
+      }
 
-footer a {
-  color: #aaa;
-  text-decoration: none;
-  display: block;
-  margin: 6px 0;
-  transition: 0.3s;
-}
+      footer a {
+        color: #aaa;
+        text-decoration: none;
+        display: block;
+        margin: 6px 0;
+        transition: 0.3s;
+      }
 
-footer a:hover {
-  color: #fff;
-  text-shadow: 0 0 10px #00bfff;
-  transform: translateX(4px);
-}
+      footer a:hover {
+        color: #fff;
+        text-shadow: 0 0 10px #00bfff;
+        transform: translateX(4px);
+      }
 
-/* Telefones, e-mail etc */
-footer p {
-  margin: 6px 0;
-  color: #ccc;
-}
+      /* Telefones, e-mail etc */
+      footer p {
+        margin: 6px 0;
+        color: #ccc;
+      }
 
-/* Ícones de pagamento */
-footer img {
-  margin: 5px 5px 0 0;
-  filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.2));
-  transition: 0.3s;
-}
+      /* Ícones de pagamento */
+      footer img {
+        margin: 5px 5px 0 0;
+        filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.2));
+        transition: 0.3s;
+      }
 
-footer img:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.5));
-}
+      footer img:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.5));
+      }
 
-/* RESPONSIVO */
-@media (max-width: 600px) {
-  footer .newsletter input[type="email"] {
-    width: 100%;
-    margin: 0 0 5px 0;
-  }
+      /* RESPONSIVO */
+      @media (max-width: 600px) {
+        footer .newsletter input[type="email"] {
+          width: 100%;
+          margin: 0 0 5px 0;
+        }
 
-  footer .newsletter button {
-    width: 100%;
-  }
-}
-      </style>
-    </head>
-    <body>
-      <header class="header">
-          <div class="container">
-              <div class="header-content">
-                  <div class="logo">MUSCLE WAY</div>
-                  <div class="nav-items">
-                      <a href="/sobrenos" class="nav-item">
-                          <span>💊</span>
-                          <span>Sobre Nós</span>
-                      </a>
-                      <div class="search-container">
-                          <input type="text" class="search-input" placeholder="O que você procura?">
-                          <span class="search-icon">🔍</span>
-                      </div>
+        footer .newsletter button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
 
-                      <a href="/dashboard" class="nav-item">
-                          <span>🏠</span>
-                          <span>Início</span>
-                      </a>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">MUSCLE WAY</div>
 
-                      <a href="/atendimento" class="nav-item">
-                          <span>🎧</span>
-                          <span>Atendimento</span>
-                      </a>
-                      </div>
-                      <a href="/carrinho" class="nav-item">
-                          <span>🛒</span>
-                          <span>Carrinho</span>
-                      </a>
-                      <a href="/sair" id="sair" class="nav-item">
-                          <span>Sair</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </header>
-      <main>
-        <h1>SOBRE NÓS<br />MUSCLE WAY</h1>
-        <div class="content">
-          <div class="card">
-            <div class="icon">💪</div>
-            <h2>MISSÃO</h2>
-            <p>
-              Nossa missão é ser seu parceiro de confiança para superar limites
-              com nutrição, saúde e desempenho de verdade.
-            </p>
-          </div>
-          <img src="/images/43.png" alt="Halter" class="image-center" />
-          <div class="card">
-            <div class="icon">⚡</div>
-            <h2>OBJETIVO</h2>
-            <p>
-              Nossos produtos têm como objetivo dar suporte total para seu
-              desempenho, saúde e recuperação — energia para treinar, força para
-              evoluir e inspiração para ir além.
-            </p>
-          </div>
-        </div>
-      </main>
-      <footer>
-        <div class="newsletter">
-          <p>📩 RECEBA PROMOÇÕES EXCLUSIVAS!</p>
+          <div class="nav-items">
+            <a href="/sobrenos" class="nav-item">💊 Sobre Nós</a>
 
-          <% if (sucesso) { %>
-            <div style="
-              background: #d1fae5;
-              color: #065f46;
-              padding: 10px;
-              border-radius: 8px;
-              margin-bottom: 2px;
-              text-align: center;
-              font-weight: bold;
-            ">
-              <%= sucesso %>
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="O que você procura?"
+              />
+              <span class="search-icon">🔍</span>
             </div>
-          <% } %>
 
-          <form action="/newsletter" method="post">
-            <input
-              type="email"
-              name="email"
-              placeholder="Digite seu melhor e-mail"
-              required
-            />
-            <button type="submit">Enviar</button>
-          </form>
+            <a href="/dashboard" class="nav-item">🏠 Início</a>
+            <a href="/atendimento" class="nav-item">🎧 Atendimento</a>
+          </div>
+
+          <a href="/carrinho" class="nav-item">🛒 Carrinho</a>
+          <a href="/minhas_compras" class="nav-item">🧾 Minhas Compras</a>
+          <a href="/sair" id="sair" class="nav-item">Sair</a>
         </div>
-        <div class="links">
-          <div>
-            <div class="section-title">Institucional</div>
-            <a href="/privacidade">Política de Privacidade</a>
-            <a href="/trocas">Política de Troca e Devolução</a>
-            <a href="/termos">Termos de Uso</a>
-            <a href="/atendimento">Contato</a>
-          </div>
+      </div>
+    </header>
 
-          <div>
-            <div class="section-title">Atendimento</div>
-            <p>📞 (19) 99537-9082</p>
-            <p>✉️ joao.mattos@sou.unifeob.edu.br</p>
-          </div>
+    <!-- CONTEÚDO -->
+    <main>
+      <h1>SOBRE NÓS<br />MUSCLE WAY</h1>
 
-          <div>
-            <div class="section-title">Redes Sociais</div>
-            <a
-              href="https://www.instagram.com/oficialmuscleway?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              >Instagram</a
-            >
-            <a
-              href="https://youtube.com/@oficialmuscleway7971?si=LJ0nsEkCmZmYzjFH"
-              >YouTube</a
-            >
-            <a
-              href="https://www.tiktok.com/@oficialmuscleway?_t=ZM-90IgBkFkw6l&_r=1"
-              >TikTok</a
-            >
-          </div>
-
-          <div>
-            <div class="section-title">Formas de Pagamento</div>
-            <img src="/images/boleto.png" alt="boleto" width="60" />
-            <img src="/images/Old_Visa_Logo.svg.png" alt="Visa" width="60" />
-            <img src="/images/mastercard.png" alt="MasterCard" width="60" />
-            <img src="/images/pix.jpg" alt="Pix" width="60" />
-            <img src="/images/elo.png" alt="elo" width="60" height="38" />
-          </div>
+      <div class="content">
+        <div class="card">
+          <div class="icon">💪</div>
+          <h2>MISSÃO</h2>
+          <p>
+            Ser seu parceiro para superar limites com nutrição, saúde e
+            desempenho.
+          </p>
         </div>
-      </footer>
-    </body>
-  </html>
+
+        <img src="/images/43.png" class="image-center" />
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h2>OBJETIVO</h2>
+          <p>
+            Fornecer produtos premium para performance, saúde e evolução
+            contínua.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="newsletter">
+        <p>📩 RECEBA PROMOÇÕES EXCLUSIVAS!</p>
+
+        <% if (sucesso) { %>
+        <div
+          style="
+            background: #d1fae5;
+            color: #065f46;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 2px;
+            text-align: center;
+            font-weight: bold;
+          "
+        >
+          <%= sucesso %>
+        </div>
+        <% } %>
+
+        <form action="/newsletter" method="post">
+          <input
+            type="email"
+            name="email"
+            placeholder="Digite seu melhor e-mail"
+            required
+          />
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+
+      <div class="links">
+        <div>
+          <div class="section-title">Institucional</div>
+          <a href="/privacidade">Política de Privacidade</a>
+          <a href="/trocas">Política de Troca e Devolução</a>
+          <a href="/termos">Termos de Uso</a>
+          <a href="/atendimento">Contato</a>
+        </div>
+
+        <div>
+          <div class="section-title">Atendimento</div>
+          <p>📞 (19) 99537-9082</p>
+          <p>✉️ joao.mattos@sou.unifeob.edu.br</p>
+        </div>
+
+        <div>
+          <div class="section-title">Redes Sociais</div>
+          <a
+            href="https://www.instagram.com/oficialmuscleway?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            >Instagram</a
+          >
+          <a
+            href="https://youtube.com/@oficialmuscleway7971?si=LJ0nsEkCmZmYzjFH"
+            >YouTube</a
+          >
+          <a
+            href="https://www.tiktok.com/@oficialmuscleway?_t=ZM-90IgBkFkw6l&_r=1"
+            >TikTok</a
+          >
+        </div>
+
+        <div>
+          <div class="section-title">Formas de Pagamento</div>
+          <img src="/images/boleto.png" alt="boleto" width="60" />
+          <img src="/images/Old_Visa_Logo.svg.png" alt="Visa" width="60" />
+          <img src="/images/mastercard.png" alt="MasterCard" width="60" />
+          <img src="/images/pix.jpg" alt="Pix" width="60" />
+          <img src="/images/elo.png" alt="elo" width="60" height="38" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
